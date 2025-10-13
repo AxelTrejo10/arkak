@@ -1,0 +1,83 @@
+/* ================================================= */
+/* ============== MODO OSCURO (DARK MODE) ============== */
+/* ================================================= */
+
+.dark-mode { background: #121212; }
+.dark-mode .phone-frame { background: #1E1E1E; border-color: #000; }
+.dark-mode .mobile-header { background: #121212; }
+.dark-mode .search-bar { background: #2C2C2C; box-shadow: none; border: 1px solid #3a3a3a; }
+.dark-mode .search-bar input { color: #e0e0e0; }
+.dark-mode .search-bar i { color: #aaa; }
+.dark-mode .filters-title, .dark-mode .property-address, .dark-mode .property-details span, .dark-mode .no-results p { color: #aaa; }
+.dark-mode .section-header h2, .dark-mode .property-title { color: #e0e0e0; }
+.dark-mode .property-card { background: #2C2C2C; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.dark-mode .favorite-btn { background: rgba(30,30,30,0.8); color: #ccc; }
+.dark-mode .favorite-btn:hover { background: #1E1E1E; }
+.dark-mode .see-all { color: #4caf87; }
+.dark-mode .bottom-tab-bar { background: #121212; border-top-color: #3a3a3a; }
+.dark-mode .tab-item { color: #aaa; }
+.dark-mode .tab-item.active { color: #4caf87; }
+.dark-mode .tab-item:hover { background: #2c2c2c; }
+.dark-mode .mascot-speech-bubble { background: #2c2c2c; color: #e0e0e0; }
+.dark-mode .mascot-speech-bubble::after { border-top-color: #2c2c2c; }
+.dark-mode .filters-modal { background: #1E1E1E; }
+.dark-mode .filters-header { border-bottom-color: #3a3a3a; }
+.dark-mode .filters-header h2, .dark-mode .filter-group h3 { color: #e0e0e0; }
+.dark-mode .filters-close-btn { color: #aaa; }
+.dark-mode .filters-close-btn:hover, .dark-mode .chat-close-btn:hover, .dark-mode .menu-item:hover { background: #2c2c2c; }
+.dark-mode .price-input label { color: #aaa; }
+.dark-mode .price-input input { background: #2c2c2c; color: #e0e0e0; border-color: #3a3a3a; }
+.dark-mode .bedroom-option, .dark-mode .bathroom-option, .dark-mode .sort-option { background: #2c2c2c; color: #ccc; border-color: #3a3a3a; }
+.dark-mode .bedroom-option.active, .dark-mode .bathroom-option.active, .dark-mode .sort-option.active { background: #4caf87; color: #121212; border-color: #4caf87; }
+.dark-mode .filters-actions { border-top-color: #3a3a3a; }
+.dark-mode .filters-reset { background: #2c2c2c; color: #ccc; border-color: #3a3a3a; }
+.dark-mode .assistant-chat { background: #1E1E1E; }
+.dark-mode .chat-header { border-bottom-color: #3a3a3a; }
+.dark-mode .agent-info h3, .dark-mode .modal-title { color: #e0e0e0; }
+.dark-mode .agent-message .message-content { background: #2c2c2c; color: #e0e0e0; }
+.dark-mode .message-time { color: #888; }
+.dark-mode .chat-input-container { border-top-color: #3a3a3a; }
+.dark-mode .chat-input input { background: #2c2c2c; border-color: #3a3a3a; color: #e0e0e0; }
+.dark-mode .voice-btn { background: #2c2c2c; color: #ccc; }
+.dark-mode .voice-btn:hover { background: #3a3a3a; }
+.dark-mode .voice-indicator { background: #2c2c2c; color: #ccc; }
+.dark-mode .modal-overlay, .dark-mode .modal-container, .dark-mode #edit-profile-modal { background: #1E1E1E; }
+.dark-mode .modal-header { background: #1E1E1E; border-bottom-color: #3a3a3a; }
+.dark-mode .modal-close-btn, .dark-mode .modal-action-btn { color: #e0e0e0; }
+.dark-mode .detail-header h1, .dark-mode .detail-highlights h3, .dark-mode .contact-section h3 { color: #e0e0e0; }
+.dark-mode .detail-feature { background: #2c2c2c; color: #ccc; }
+.dark-mode .detail-location { color: #aaa; border-bottom-color: #3a3a3a; }
+.dark-mode .detail-description, .dark-mode .highlight-item { color: #ccc; border-bottom-color: #2c2c2c; }
+.dark-mode .action-buttons { background: #121212; border-top-color: #3a3a3a; }
+.dark-mode .action-button.secondary { background: #1E1E1E; color: #4caf87; border-color: #4caf87; }
+.dark-mode .user-menu { background: #1E1E1E; }
+.dark-mode .menu-item { color: #e0e0e0; }
+.dark-mode .menu-item i { color: #aaa; }
+.dark-mode .menu-divider { background-color: #3a3a3a; }
+.dark-mode #edit-profile-form label { color: #e0e0e0; }
+.dark-mode #edit-profile-form input { background: #2c2c2c; color: #e0e0e0; border-color: #3a3a3a; }
+.dark-mode #edit-profile-form input[disabled] { background-color: #252525; color: #777; }
+.dark-mode .theme-switcher-container { border-top-color: #3a3a3a; }
+
+/* ===== ESTILOS DARK MODE PARA MODAL DE CONTACTO ===== */
+.dark-mode .contact-property-info {
+    background: #2C2C2C;
+    border-color: #3a3a3a;
+}
+.dark-mode .contact-property-info h3 {
+    color: #aaa;
+}
+.dark-mode .contact-property-info p {
+    color: #4caf87;
+}
+.dark-mode #contact-form .input-group input,
+.dark-mode #contact-form textarea {
+    background-color: #2C2C2C;
+    border-color: #3a3a3a;
+    color: #e0e0e0;
+}
+.dark-mode #contact-form .input-group input:focus,
+.dark-mode #contact-form textarea:focus {
+    background-color: #1E1E1E;
+    border-color: #4caf87;
+}
