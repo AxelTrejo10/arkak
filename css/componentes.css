@@ -30,7 +30,6 @@
 }
 .header-btn:hover { background: rgba(255,255,255,0.1); }
 .logo {
-    /* CAMBIOS PARA CENTRAR EL LOGO Y OCULTAR TEXTO */
     position: absolute; 
     left: 50%;
     transform: translateX(-50%);
@@ -40,9 +39,7 @@
     font-weight: 700;
     font-size: 1.3rem; 
 }
-/* Estilo para el ícono SVG/IMG del cocodrilo en el header */
 .logo img, .logo .crocodile-icon {
-    /* LOGO MÁS GRANDE */
     width: 60px; 
     height: 60px;
     margin-right: 0; 
@@ -132,12 +129,11 @@
     font-size: 0.85rem; 
     font-weight: 500; 
     transition: color 0.3s;
-    /* Adición del borde */
     padding: 4px 8px; 
     border: 1px solid #333; 
     border-radius: 4px;
 }
-.property-details i { margin-right: 4px; color: #333; /* Color del ícono a negro */ font-size: 0.8rem; }
+.property-details i { margin-right: 4px; color: #333; font-size: 0.8rem; }
 .property-address { color: #888; font-size: 0.85rem; margin-bottom: 16px; display: flex; align-items: center; transition: color 0.3s;}
 .property-address i { margin-right: 6px; font-size: 0.8rem; }
 .action-btn {
@@ -148,9 +144,17 @@
 
 /* ===== BARRA DE NAVEGACIÓN INFERIOR ===== */
 .bottom-tab-bar {
-    position: absolute; bottom: 0; left: 0; right: 0; height: 70px; background: white;
-    display: flex; justify-content: space-around; align-items: center;
-    border-top: 1px solid #e9ecef; z-index: 100;
+    position: fixed; /* <<<< CORRECCIÓN AQUÍ */
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    height: 70px; 
+    background: white;
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center;
+    border-top: 1px solid #e9ecef; 
+    z-index: 100;
     transition: background-color 0.3s, border-top-color 0.3s;
 }
 .tab-item {
@@ -166,8 +170,15 @@
 
 /* ===== MASCOTA Y CHAT ===== */
 .cute-mascot {
-    position: absolute; bottom: 80px; right: 20px; width: 60px; height: 80px;
-    cursor: pointer; z-index: 500; transition: all 0.3s ease; animation: bounce 2s infinite;
+    position: fixed; /* <<<< CORRECCIÓN AQUÍ */
+    bottom: 80px; 
+    right: 20px; 
+    width: 60px; 
+    height: 80px;
+    cursor: pointer; 
+    z-index: 500; 
+    transition: all 0.3s ease; 
+    animation: bounce 2s infinite;
 }
 .cute-mascot:hover { transform: scale(1.1); }
 .mascot-container { position: relative; width: 100%; height: 100%; }
@@ -202,7 +213,7 @@
 
 /* ===== MODALES (GENERAL) */
 .modal-overlay, .filters-modal-overlay, .user-menu-overlay, .assistant-chat-overlay {
-    position: absolute;
+    position: fixed; /* <<<< CORRECCIÓN AQUÍ */
     top: 0;
     left: 0;
     width: 100%;
@@ -211,7 +222,6 @@
     z-index: 1000;
     display: none;
     animation: fadeIn 0.3s ease-out;
-    border-radius: 40px;
 }
 .modal-overlay {
     background: white;
@@ -259,10 +269,9 @@
     min-width: 70px; 
     justify-content: center; 
     transition: background-color 0.3s, color 0.3s;
-    /* Adición del borde */
     border: 1px solid #333; 
 }
-.detail-feature i { margin-right: 6px; color: #333; /* Color del ícono a negro */ font-size: 0.8rem; }
+.detail-feature i { margin-right: 6px; color: #333; font-size: 0.8rem; }
 .detail-location { display: flex; align-items: center; color: #666; margin-bottom: 20px; font-size: 0.9rem; padding: 12px 0; border-bottom: 1px solid #e9ecef; transition: color 0.3s, border-bottom-color 0.3s;}
 .detail-location i { margin-right: 8px; color: #80D480; font-size: 0.9rem; }
 .detail-description { color: #555; line-height: 1.6; margin-bottom: 24px; font-size: 0.9rem; transition: color 0.3s;}
@@ -382,21 +391,20 @@
 .user-menu {
     position: absolute; top: 0; right: 0; width: 280px; height: 100%; background: white;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column;
-    animation: slideInFromRight 0.3s ease-out; border-top-right-radius: 40px; border-bottom-right-radius: 40px;
+    animation: slideInFromRight 0.3s ease-out; 
     transition: background-color 0.3s; z-index: 1500;
 }
 .user-info { 
     padding: 30px 20px 20px; 
     background: linear-gradient(135deg, #60B360, #80D480); 
     color: white; 
-    /* Estilo del encabezado del menú de usuario */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .user-avatar { 
-    width: 80px; /* Aumentar tamaño del avatar */
-    height: 80px; /* Aumentar tamaño del avatar */
+    width: 80px; 
+    height: 80px;
     background: rgba(255, 255, 255, 0.2); 
     border-radius: 50%; 
     display: flex; 
@@ -405,11 +413,11 @@
     margin-bottom: 15px; 
     position: relative; 
     overflow: hidden;
-    border: 3px solid white; /* Borde blanco para enmarcar el avatar */
+    border: 3px solid white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 .user-avatar-img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; display: none; }
-.user-avatar i { font-size: 2.2rem; color: white; } /* Ícono más grande */
+.user-avatar i { font-size: 2.2rem; color: white; }
 
 .user-details { text-align: center; }
 .user-details h3 { font-size: 1.3rem; margin-bottom: 5px; font-weight: 600; }
@@ -421,7 +429,7 @@
     align-items: center; 
     padding: 15px 20px; 
     text-decoration: none; 
-    color: #333; /* Texto de la opción en negro */
+    color: #333;
     transition: background-color 0.2s, color 0.3s; 
     border: none; 
     background: none; 
@@ -430,12 +438,12 @@
     font-size: 1rem; 
     cursor: pointer;
 }
-.menu-item:hover { background: #f0f0f0; } /* Fondo gris muy claro al pasar el ratón */
+.menu-item:hover { background: #f0f0f0; }
 .menu-item i { 
     width: 24px; 
     margin-right: 15px; 
-    color: #60B360; /* Ícono de opción en verde */
-    font-size: 1.2rem; /* Íconos un poco más grandes */
+    color: #60B360;
+    font-size: 1.2rem;
     transition: color 0.3s;
 }
 .menu-item span { flex: 1; }
@@ -447,11 +455,15 @@
 
 /* ===== PANTALLA DE LOGIN ===== */
 .login-overlay {
+    position: fixed; /* <<<< CORRECCIÓN AQUÍ */
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
+    background: #f8f9fa;
 }
 .login-container { 
     background: white; 
@@ -462,7 +474,6 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
     margin: 20px; 
     z-index: 3000; 
-    /* BORDE NEGRO Y GRUESO (4px) */
     border: 4px solid #333;
 }
 .login-header { text-align: center; margin-bottom: 32px; }
@@ -475,7 +486,6 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto 16px;
-    /* BORDE DEL LOGO NEGRO (2px) */
     border: 2px solid #333;
 }
 .login-header h1 { font-size: 2rem; color: #60B360; margin-bottom: 8px; font-weight: 700; }
@@ -665,9 +675,8 @@ input:checked + .slider:before {
     margin-bottom: 0;
 }
 
-/* Estilos para las nuevas opciones dentro del modal de perfil */
 #edit-profile-form .menu-item {
-    padding: 12px 0; /* Ajustamos padding horizontal */
+    padding: 12px 0;
     border: none;
     border-radius: 0;
     justify-content: flex-start;
@@ -677,11 +686,11 @@ input:checked + .slider:before {
     background: #f8f9fa;
 }
 #edit-profile-form .menu-item i {
-    color: #e74c3c; /* Usamos rojo para las acciones de borrar */
+    color: #e74c3c;
     font-size: 1.1rem;
 }
 #edit-profile-form #clear-cache-btn i {
-    color: #666; /* Un gris neutro para limpiar caché */
+    color: #666;
 }
 
 /* ===== NUEVOS ESTILOS PARA MODAL PROVEEDOR ===== */
@@ -701,21 +710,18 @@ input:checked + .slider:before {
     padding-bottom: 5px;
 }
 .property-specs-inputs {
-    /* Mantenemos grid para las especificaciones (dorms, baños, m2) */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
-/* AÑADIDO: Estilo para la nueva sección de disponibilidad con 2 columnas */
 #supplier-disponibility-inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 .property-specs-inputs .input-group input {
-    padding: 10px 10px 10px 40px; /* Ajustar padding para íconos pequeños */
+    padding: 10px 10px 10px 40px;
 }
-/* Estilo para los selectores de disponibilidad */
 #supplier-disponibility-inputs select {
     width: 100%;
     padding: 10px 10px 10px 40px; 
@@ -724,34 +730,30 @@ input:checked + .slider:before {
     font-size: 1rem;
     background: #f8f9fa;
     outline: none;
-    /* Para permitir selección múltiple en iOS/Android */
     appearance: none; 
     cursor: pointer;
 }
 
 #supplier-disponibility-inputs #prop-available-days {
-    height: 150px; /* Para mostrar los 7 días */
+    height: 150px;
     padding: 5px;
     padding-left: 10px;
 }
 
 #supplier-disponibility-inputs > div.input-group:nth-child(2) {
-    /* Estilo para los selectores de Hora de Inicio y Fin */
     display: flex;
     gap: 5px;
 }
 #supplier-disponibility-inputs > div.input-group:nth-child(2) select {
     width: 50%;
-    padding-left: 10px; /* Quitamos padding de ícono aquí */
+    padding-left: 10px;
     height: 44px;
 }
 
-/* Estilo del selector de hora del cliente */
 #contact-form > div.input-group > select#preferred-time-select {
-    padding-left: 40px; /* Mantener espacio para el ícono del reloj */
+    padding-left: 40px;
 }
 
-/* Estilo específico para las casillas de verificación de días */
 #prop-available-days-fieldset {
     border: 2px solid #e9ecef;
     border-radius: 12px;
@@ -793,7 +795,6 @@ input:checked + .slider:before {
     background: linear-gradient(135deg, #60B360, #80D480);
 }
 
-/* Estilos de la lista de propiedades del proveedor */
 .supplier-property-item {
     display: flex;
     justify-content: space-between;

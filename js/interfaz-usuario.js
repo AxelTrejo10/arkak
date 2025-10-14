@@ -44,13 +44,12 @@ function openContactModal(propertyId) {
 
     document.getElementById('contact-property-title').textContent = property.title;
     document.getElementById('property-disponibility-info').textContent = `Disponibilidad: ${property.disponibilidad || 'No especificada'}`;
-    DOMElements.contactModal.dataset.propertyId = propertyId; // Guardar ID en el modal
+    DOMElements.contactModal.dataset.propertyId = propertyId;
     
-    // Autocompletar con datos del usuario si existe
     if (currentUser) {
         document.getElementById('contact-name').value = userPreferences.name || currentUser.name;
         document.getElementById('contact-email').value = currentUser.email;
-        document.getElementById('contact-phone').value = currentUser.phone || ''; // Usar teléfono si existe
+        document.getElementById('contact-phone').value = currentUser.phone || '';
     }
 
     DOMElements.contactModal.style.display = 'block';
@@ -158,7 +157,7 @@ function renderProperties() {
         if (isFavoritesViewActive) {
             DOMElements.propertiesTitle.textContent = `Mis Favoritos (${filtered.length})`;
         } else if (hasActiveFilters) {
-            DOMEElements.propertiesTitle.textContent = `${filtered.length} casa${filtered.length > 1 ? 's' : ''} encontrada${filtered.length > 1 ? 's' : ''}`;
+            DOMElements.propertiesTitle.textContent = `${filtered.length} casa${filtered.length > 1 ? 's' : ''} encontrada${filtered.length > 1 ? 's' : ''}`;
         } else {
             DOMElements.propertiesTitle.textContent = 'Casas Destacadas';
         }
@@ -241,7 +240,8 @@ function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification-toast ${type}`;
     notification.textContent = message;
-    document.querySelector('.phone-frame').appendChild(notification);
+    // <<<< CORRECCIÓN AQUÍ: Se adjunta al body, que es el contenedor principal ahora.
+    document.body.appendChild(notification);
     setTimeout(() => notification.remove(), 3000);
 }
 
