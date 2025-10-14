@@ -12,441 +12,432 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
-
-    <div class="mobile-simulator">
-        <div class="phone-frame" id="phone-frame">
-            <div class="phone-notch"></div>
-
-            <div class="login-overlay" id="login-overlay">
-                <div class="login-container">
-                    <div class="login-header">
-                        <div class="login-logo">
-                            <img src="img/cocodrilo-logo.png" alt="Logo de ArcaK" style="width: 80px; height: 80px; border: 2px solid #333; border-radius: 20px;">
-                        </div>
-                        <h1>ArcaK</h1>
-                        <p>Bienvenide</p>
-                    </div>
-                    <form id="login-form">
-                        <div class="input-group">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" id="login-email" placeholder="Correo electrónico" required>
-                        </div>
-                        <div class="input-group">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="login-password" placeholder="Contraseña">
-                        </div>
-                        <div class="form-options">
-                            <label class="checkbox-container">
-                                <input type="checkbox" id="remember-me" checked> Recordarme
-                            </label>
-                            <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
-                        </div>
-                        <button type="submit" class="login-submit-btn" id="login-submit">
-                            Iniciar Sesión
-                        </button>
-                    </form>
+<body id="phone-frame"> <div class="login-overlay" id="login-overlay">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-logo">
+                    <img src="img/cocodrilo-logo.png" alt="Logo de ArcaK" style="width: 80px; height: 80px; border: 2px solid #333; border-radius: 20px;">
                 </div>
+                <h1>ArcaK</h1>
+                <p>Bienvenide</p>
             </div>
-
-            <div class="main-content" id="main-content">
-                <header class="mobile-header">
-                    <button class="header-btn" id="menu-btn">
-                        <i class="fas fa-bars"></i>
-                    </button>
-    
-                    <div class="logo">
-                        <img src="img/cocodrilo-logo.png" alt="Logo de ArcaK">
-                    </div>
-    
-                    <button class="header-btn" id="profile-btn">
-                        <i class="fas fa-user"></i>
-                    </button>
-                </header>
-                
-                <div class="search-section">
-                    <div class="search-container">
-                        <div class="search-bar">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="search-input" placeholder="Buscar por ciudad, colonia...">
-                        </div>
-                        <button class="filter-btn" id="filter-btn"><i class="fas fa-sliders-h"></i></button>
-                    </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="login-email" placeholder="Correo electrónico" required>
                 </div>
-
-                <div class="applied-filters" id="applied-filters" style="display: none;">
-                    <div class="filters-container">
-                        <span class="filters-title">Filtros:</span>
-                        <div class="filter-tags" id="filter-tags"></div>
-                        <button class="clear-filters" id="clear-filters">Limpiar</button>
-                    </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="Contraseña">
                 </div>
-                
-                <section class="properties-section">
-                    <div class="section-header">
-                        <h2 id="properties-title">Casas Destacadas</h2>
-                        <a href="#" class="see-all">Ver todas</a>
-                    </div>
-                    <div class="properties-grid" id="properties-grid">
-                    </div>
-                </section>
-
-                <nav class="bottom-tab-bar">
-                    <a href="#" class="tab-item active" id="tab-home">
-                        <span class="tab-icon"><i class="fas fa-home"></i></span>
-                        <span class="tab-label">Inicio</span>
-                    </a>
-                    <a href="#" class="tab-item" id="tab-search">
-                        <span class="tab-icon"><i class="fas fa-search"></i></span>
-                        <span class="tab-label">Buscar</span>
-                    </a>
-                    <a href="#" class="tab-item" id="tab-favorites">
-                        <span class="tab-icon"><i class="fas fa-heart"></i></span>
-                        <span class="tab-label">Favoritos</span>
-                    </a>
-                    <a href="#" class="tab-item" id="tab-profile">
-                        <span class="tab-icon"><i class="fas fa-user"></i></span>
-                        <span class="tab-label">Perfil</span>
-                    </a>
-                </nav>
-        
-                <div class="cute-mascot" id="cute-mascot">
-                    <div class="mascot-container">
-                        <div class="mascot-body">
-                            <div class="mascot-face">
-                                <div class="mascot-eye left"></div>
-                                <div class="mascot-eye right"></div>
-                                <div class="mascot-mouth"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember-me" checked> Recordarme
+                    </label>
+                    <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
                 </div>
-            </div> 
-            
-            <div class="modal-overlay" id="property-modal">
-                <div class="modal-container">
-                    <header class="modal-header">
-                        <button class="modal-close-btn" id="close-modal"><i class="fas fa-arrow-left"></i></button>
-                    </header>
-                    <div class="modal-content" id="modal-content">
-                    </div>
-                </div>
-            </div>
-
-            <div class="filters-modal-overlay" id="filters-modal">
-                <div class="filters-modal">
-                    <div class="filters-header">
-                        <h2>Filtros</h2>
-                        <button class="filters-close-btn" id="filters-close"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="filters-content">
-                        <div class="filter-group">
-                            <h3>Rango de Precio (MXN)</h3>
-                            <div class="price-inputs">
-                                <div class="price-input">
-                                    <label for="min-price">Mínimo</label>
-                                    <input type="number" id="min-price" placeholder="Ej: 1,000,000">
-                                </div>
-                                <div class="price-input">
-                                    <label for="max-price">Máximo</label>
-                                    <input type="number" id="max-price" placeholder="Ej: 5,000,000">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-group">
-                            <h3>Habitaciones</h3>
-                            <div class="bedrooms-options">
-                                <button class="bedroom-option" data-beds="1">1+</button>
-                                <button class="bedroom-option" data-beds="2">2+</button>
-                                <button class="bedroom-option active" data-beds="3">3+</button>
-                                <button class="bedroom-option" data-beds="4">4+</button>
-                                <button class="bedroom-option" data-beds="5">5+</button>
-                            </div>
-                        </div>
-                        <div class="filter-group">
-                            <h3>Baños</h3>
-                            <div class="bathrooms-options">
-                                <button class="bathroom-option" data-baths="1">1+</button>
-                                <button class="bathroom-option active" data-baths="2">2+</button>
-                                <button class="bathroom-option" data-baths="3">3+</button>
-                                <button class="bathroom-option" data-baths="4">4+</button>
-                            </div>
-                        </div>
-                         <div class="filter-group">
-                            <h3>Ordenar por</h3>
-                            <div class="sort-options">
-                                <button class="sort-option" data-sort="price-asc">Precio (menor a mayor)</button>
-                                <button class="sort-option" data-sort="price-desc">Precio (mayor a menor)</button>
-                                <button class="sort-option" data-sort="bedrooms">Más habitaciones</button>
-                                <button class="sort-option" data-sort="area">Mayor superficie</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filters-actions">
-                        <button class="filters-reset" id="filters-reset">Limpiar</button>
-                        <button class="filters-apply" id="filters-apply">Aplicar</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="user-menu-overlay" id="user-menu-overlay">
-                <div class="user-menu">
-                    <div class="user-info">
-                        <div class="user-avatar" id="menu-avatar-container">
-                            <img src="" alt="Avatar" id="menu-avatar-img" class="user-avatar-img">
-                            <i class="fas fa-user default-avatar-icon"></i>
-                        </div>
-                        <div class="user-details">
-                            <h3 id="user-name">Nombre de Usuario</h3>
-                            <p id="user-email">email@ejemplo.com</p>
-                        </div>
-                    </div>
-                    <nav class="menu-items">
-                        <a href="#" class="menu-item">
-                            <i class="fas fa-user-edit"></i>
-                            <span>Editar Perfil</span>
-                        </a>
-                        <a href="#" class="menu-item">
-                            <i class="fas fa-heart"></i>
-                            <span>Mis Favoritos</span>
-                            <span class="badge" id="favorites-count">0</span>
-                        </a>
-                        <a href="#" class="menu-item" id="supplier-menu-item">
-                            <i class="fas fa-building"></i>
-                            <span>Proveedor</span>
-                        </a>
-                        <div class="menu-divider"></div>
-                        <a href="#" class="menu-item">
-                            <i class="fas fa-question-circle"></i>
-                            <span>Ayuda</span>
-                        </a>
-                        <button class="menu-item logout-btn" id="logout-btn">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Cerrar Sesión</span>
-                        </button>
-                    </nav>
-                </div>
-            </div>
-
-            <div class="modal-overlay" id="edit-profile-modal">
-                <div class="modal-container">
-                    <header class="modal-header">
-                        <button class="modal-close-btn" id="close-edit-profile"><i class="fas fa-arrow-left"></i></button>
-                        <h2 class="modal-title">Editar Perfil</h2>
-                        <div></div>
-                    </header>
-                    <div class="modal-content">
-                        <form id="edit-profile-form">
-                            <div class="profile-pic-container">
-                                <img src="" id="profile-pic-preview" alt="Vista previa de perfil">
-                                <button type="button" class="change-pic-btn" id="change-pic-btn"><i class="fas fa-camera"></i></button>
-                                <input type="file" id="profile-pic-input" accept="image/*" style="display: none;">
-                            </div>
-
-                            <div class="input-group">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="profile-name" placeholder="Tu nombre">
-                            </div>
-                            
-                            <div class="input-group">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="profile-email" placeholder="Tu correo" disabled>
-                            </div>
-                            
-                            <div class="theme-switcher-container">
-                                <i class="fas fa-moon"></i>
-                                <label for="theme-toggle">Modo Oscuro</label>
-                                <label class="theme-switch">
-                                    <input type="checkbox" id="theme-toggle">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                            
-                            <button type="submit" class="contact-submit">Guardar Cambios</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-overlay" id="supplier-modal">
-                <div class="modal-container">
-                    <header class="modal-header">
-                        <button class="modal-close-btn" id="close-supplier-modal"><i class="fas fa-arrow-left"></i></button>
-                        <h2 class="modal-title">Gestión de Propiedades</h2>
-                        <div></div>
-                    </header>
-                    <div class="modal-content">
-                        
-                        <div id="supplier-properties-section" style="padding: 16px 20px;">
-                            <h4 style="font-size: 1.1rem; color: #333; margin-bottom: 15px;">Mis Publicaciones (Click en Editar)</h4>
-                            <div id="supplier-properties-list" class="properties-list">
-                                </div>
-                        </div>
-
-                        <form id="add-property-form" class="property-form">
-                            <h3 class="form-section-title" id="supplier-form-title">Añadir Nueva Propiedad</h3>
-                            
-                            <div class="input-group">
-                                <i class="fas fa-heading"></i>
-                                <input type="text" id="prop-title" placeholder="Título de la propiedad (ej: Villa de Lujo)" required>
-                            </div>
-                            <div class="input-group">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <input type="text" id="prop-location" placeholder="Ubicación (ej: Zihuatanejo, Guerrero)" required>
-                            </div>
-                             <div class="input-group">
-                                <i class="fas fa-dollar-sign"></i>
-                                <input type="number" id="prop-price" placeholder="Precio (MXN, sin comas)" required>
-                            </div>
-                            
-                            <h3 class="form-section-title">Características</h3>
-                            <div class="property-specs-inputs">
-                                <div class="input-group">
-                                    <i class="fas fa-bed"></i>
-                                    <input type="number" id="prop-bedrooms" placeholder="Dormitorios" min="1" required>
-                                </div>
-                                <div class="input-group">
-                                    <i class="fas fa-bath"></i>
-                                    <input type="number" id="prop-bathrooms" placeholder="Baños" min="1" required>
-                                </div>
-                                <div class="input-group">
-                                    <i class="fas fa-vector-square"></i>
-                                    <input type="number" id="prop-area" placeholder="Área (m²)" min="1" required>
-                                </div>
-                            </div>
-
-                            <h3 class="form-section-title">Disponibilidad Semanal</h3>
-                            <div id="supplier-disponibility-inputs" class="property-specs-inputs" style="grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <div class="input-group">
-                                    <i class="fas fa-calendar-day"></i>
-                                    <fieldset id="prop-available-days-fieldset" required>
-                                        <label><input type="checkbox" name="prop_day" value="lun"> Lunes</label>
-                                        <label><input type="checkbox" name="prop_day" value="mar"> Martes</label>
-                                        <label><input type="checkbox" name="prop_day" value="mie"> Miércoles</label>
-                                        <label><input type="checkbox" name="prop_day" value="jue"> Jueves</label>
-                                        <label><input type="checkbox" name="prop_day" value="vie"> Viernes</label>
-                                        <label><input type="checkbox" name="prop_day" value="sab"> Sábado</label>
-                                        <label><input type="checkbox" name="prop_day" value="dom"> Domingo</label>
-                                    </fieldset>
-                                </div>
-                                <div class="input-group">
-                                    <i class="fas fa-clock"></i>
-                                    <select id="prop-start-time" required>
-                                        </select>
-                                    <select id="prop-end-time" required>
-                                        </select>
-                                </div>
-                            </div>
-
-                            <h3 class="form-section-title">Descripción y Extras</h3>
-                            <textarea id="prop-description" rows="4" placeholder="Descripción detallada de la propiedad y sus características principales."></textarea>
-                            
-                            <div class="input-group">
-                                <i class="fas fa-list-ul"></i>
-                                <input type="text" id="prop-features" placeholder="Características extra (separa con comas: Jardín, Alberca, Vista al mar)">
-                            </div>
-                            
-                            <h3 class="form-section-title">Foto Principal</h3>
-                            <div id="prop-image-preview-container" style="text-align: center; margin-bottom: 15px;">
-                                <img id="prop-image-preview" src="" alt="Previsualización de Imagen" style="max-width: 100%; max-height: 150px; display: none; border-radius: 8px;">
-                            </div>
-                            <input type="file" id="prop-image-input" accept="image/*">
-                            
-                            <button type="submit" class="contact-submit" id="submit-property">
-                                <i class="fas fa-plus-circle"></i> Publicar Propiedad
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="assistant-chat-overlay" id="assistant-chat">
-                <div class="assistant-chat">
-                    <div class="chat-header">
-                        <div class="chat-agent">
-                            <div class="agent-avatar">
-                               <div class="mascot-avatar">
-                                    <div class="mascot-body">
-                                        <div class="mascot-face">
-                                            <div class="mascot-eye left"></div>
-                                            <div class="mascot-eye right"></div>
-                                            <div class="mascot-mouth"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="agent-info">
-                                <h3>Boli</h3>
-                                <p>Asistente Virtual</p>
-                            </div>
-                        </div>
-                        <button class="chat-close-btn" id="chat-close"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="chat-messages" id="chat-messages">
-                        </div>
-                    <div class="chat-input-container">
-                        <div class="chat-input">
-                            <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
-                            <button class="voice-btn" id="voice-btn"><i class="fas fa-microphone"></i></button>
-                            <button class="send-btn" id="send-message"><i class="fas fa-paper-plane"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-overlay" id="contact-modal">
-                <div class="modal-container">
-                    <header class="modal-header">
-                        <button class="modal-close-btn" id="close-contact-modal"><i class="fas fa-arrow-left"></i></button>
-                        <h2 class="modal-title">Contactar Vendedor</h2>
-                        <div></div>
-                    </header>
-                    <div class="modal-content">
-                        <form id="contact-form">
-                            <div class="contact-property-info">
-                                <h3>Estás interesado en:</h3>
-                                <p id="contact-property-title">Título de la Propiedad</p>
-                                <p id="property-disponibility-info" style="font-size: 0.9rem; color: #666; margin-top: 5px;">Disponibilidad: N/A</p>
-                            </div>
-                            
-                            <h3 class="form-section-title">Elige un Horario</h3>
-                             <div class="input-group">
-                                <i class="fas fa-calendar-alt"></i>
-                                <input type="date" id="preferred-date" required>
-                            </div>
-                            <div class="input-group">
-                                <i class="fas fa-clock"></i>
-                                <select id="preferred-time-select" required>
-                                    </select>
-                            </div>
-
-                            <div class="input-group">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="contact-name" placeholder="Tu Nombre completo" required>
-                            </div>
-                            
-                            <div class="input-group">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="contact-email" placeholder="Tu Correo electrónico" required>
-                            </div>
-
-                            <div class="input-group">
-                                <i class="fas fa-phone"></i>
-                                <input type="tel" id="contact-phone" placeholder="Tu Teléfono de contacto" required>
-                            </div>
-
-                            <textarea id="contact-message" rows="4" placeholder="Hola, me interesa esta propiedad y quisiera más información."></textarea>
-                            
-                            <button type="submit" class="contact-submit">
-                                <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
+                <button type="submit" class="login-submit-btn" id="login-submit">
+                    Iniciar Sesión
+                </button>
+            </form>
         </div>
     </div>
+
+    <div class="main-content" id="main-content">
+        <header class="mobile-header">
+            <button class="header-btn" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="logo">
+                <img src="img/cocodrilo-logo.png" alt="Logo de ArcaK">
+            </div>
+
+            <button class="header-btn" id="profile-btn">
+                <i class="fas fa-user"></i>
+            </button>
+        </header>
+        
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Buscar por ciudad, colonia...">
+                </div>
+                <button class="filter-btn" id="filter-btn"><i class="fas fa-sliders-h"></i></button>
+            </div>
+        </div>
+
+        <div class="applied-filters" id="applied-filters" style="display: none;">
+            <div class="filters-container">
+                <span class="filters-title">Filtros:</span>
+                <div class="filter-tags" id="filter-tags"></div>
+                <button class="clear-filters" id="clear-filters">Limpiar</button>
+            </div>
+        </div>
+        
+        <section class="properties-section">
+            <div class="section-header">
+                <h2 id="properties-title">Casas Destacadas</h2>
+                <a href="#" class="see-all">Ver todas</a>
+            </div>
+            <div class="properties-grid" id="properties-grid">
+            </div>
+        </section>
+
+        <nav class="bottom-tab-bar">
+            <a href="#" class="tab-item active" id="tab-home">
+                <span class="tab-icon"><i class="fas fa-home"></i></span>
+                <span class="tab-label">Inicio</span>
+            </a>
+            <a href="#" class="tab-item" id="tab-search">
+                <span class="tab-icon"><i class="fas fa-search"></i></span>
+                <span class="tab-label">Buscar</span>
+            </a>
+            <a href="#" class="tab-item" id="tab-favorites">
+                <span class="tab-icon"><i class="fas fa-heart"></i></span>
+                <span class="tab-label">Favoritos</span>
+            </a>
+            <a href="#" class="tab-item" id="tab-profile">
+                <span class="tab-icon"><i class="fas fa-user"></i></span>
+                <span class="tab-label">Perfil</span>
+            </a>
+        </nav>
+
+        <div class="cute-mascot" id="cute-mascot">
+            <div class="mascot-container">
+                <div class="mascot-body">
+                    <div class="mascot-face">
+                        <div class="mascot-eye left"></div>
+                        <div class="mascot-eye right"></div>
+                        <div class="mascot-mouth"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <div class="modal-overlay" id="property-modal">
+        <div class="modal-container">
+            <header class="modal-header">
+                <button class="modal-close-btn" id="close-modal"><i class="fas fa-arrow-left"></i></button>
+            </header>
+            <div class="modal-content" id="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <div class="filters-modal-overlay" id="filters-modal">
+        <div class="filters-modal">
+            <div class="filters-header">
+                <h2>Filtros</h2>
+                <button class="filters-close-btn" id="filters-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="filters-content">
+                <div class="filter-group">
+                    <h3>Rango de Precio (MXN)</h3>
+                    <div class="price-inputs">
+                        <div class="price-input">
+                            <label for="min-price">Mínimo</label>
+                            <input type="number" id="min-price" placeholder="Ej: 1,000,000">
+                        </div>
+                        <div class="price-input">
+                            <label for="max-price">Máximo</label>
+                            <input type="number" id="max-price" placeholder="Ej: 5,000,000">
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Habitaciones</h3>
+                    <div class="bedrooms-options">
+                        <button class="bedroom-option" data-beds="1">1+</button>
+                        <button class="bedroom-option" data-beds="2">2+</button>
+                        <button class="bedroom-option active" data-beds="3">3+</button>
+                        <button class="bedroom-option" data-beds="4">4+</button>
+                        <button class="bedroom-option" data-beds="5">5+</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Baños</h3>
+                    <div class="bathrooms-options">
+                        <button class="bathroom-option" data-baths="1">1+</button>
+                        <button class="bathroom-option active" data-baths="2">2+</button>
+                        <button class="bathroom-option" data-baths="3">3+</button>
+                        <button class="bathroom-option" data-baths="4">4+</button>
+                    </div>
+                </div>
+                 <div class="filter-group">
+                    <h3>Ordenar por</h3>
+                    <div class="sort-options">
+                        <button class="sort-option" data-sort="price-asc">Precio (menor a mayor)</button>
+                        <button class="sort-option" data-sort="price-desc">Precio (mayor a menor)</button>
+                        <button class="sort-option" data-sort="bedrooms">Más habitaciones</button>
+                        <button class="sort-option" data-sort="area">Mayor superficie</button>
+                    </div>
+                </div>
+            </div>
+            <div class="filters-actions">
+                <button class="filters-reset" id="filters-reset">Limpiar</button>
+                <button class="filters-apply" id="filters-apply">Aplicar</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="user-menu-overlay" id="user-menu-overlay">
+        <div class="user-menu">
+            <div class="user-info">
+                <div class="user-avatar" id="menu-avatar-container">
+                    <img src="" alt="Avatar" id="menu-avatar-img" class="user-avatar-img">
+                    <i class="fas fa-user default-avatar-icon"></i>
+                </div>
+                <div class="user-details">
+                    <h3 id="user-name">Nombre de Usuario</h3>
+                    <p id="user-email">email@ejemplo.com</p>
+                </div>
+            </div>
+            <nav class="menu-items">
+                <a href="#" class="menu-item">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Editar Perfil</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Mis Favoritos</span>
+                    <span class="badge" id="favorites-count">0</span>
+                </a>
+                <a href="#" class="menu-item" id="supplier-menu-item">
+                    <i class="fas fa-building"></i>
+                    <span>Proveedor</span>
+                </a>
+                <div class="menu-divider"></div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Ayuda</span>
+                </a>
+                <button class="menu-item logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="edit-profile-modal">
+        <div class="modal-container">
+            <header class="modal-header">
+                <button class="modal-close-btn" id="close-edit-profile"><i class="fas fa-arrow-left"></i></button>
+                <h2 class="modal-title">Editar Perfil</h2>
+                <div></div>
+            </header>
+            <div class="modal-content">
+                <form id="edit-profile-form">
+                    <div class="profile-pic-container">
+                        <img src="" id="profile-pic-preview" alt="Vista previa de perfil">
+                        <button type="button" class="change-pic-btn" id="change-pic-btn"><i class="fas fa-camera"></i></button>
+                        <input type="file" id="profile-pic-input" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="profile-name" placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="profile-email" placeholder="Tu correo" disabled>
+                    </div>
+                    
+                    <div class="theme-switcher-container">
+                        <i class="fas fa-moon"></i>
+                        <label for="theme-toggle">Modo Oscuro</label>
+                        <label class="theme-switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="contact-submit">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="supplier-modal">
+        <div class="modal-container">
+            <header class="modal-header">
+                <button class="modal-close-btn" id="close-supplier-modal"><i class="fas fa-arrow-left"></i></button>
+                <h2 class="modal-title">Gestión de Propiedades</h2>
+                <div></div>
+            </header>
+            <div class="modal-content">
+                
+                <div id="supplier-properties-section" style="padding: 16px 20px;">
+                    <h4 style="font-size: 1.1rem; color: #333; margin-bottom: 15px;">Mis Publicaciones (Click en Editar)</h4>
+                    <div id="supplier-properties-list" class="properties-list">
+                        </div>
+                </div>
+
+                <form id="add-property-form" class="property-form">
+                    <h3 class="form-section-title" id="supplier-form-title">Añadir Nueva Propiedad</h3>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-heading"></i>
+                        <input type="text" id="prop-title" placeholder="Título de la propiedad (ej: Villa de Lujo)" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="prop-location" placeholder="Ubicación (ej: Zihuatanejo, Guerrero)" required>
+                    </div>
+                     <div class="input-group">
+                        <i class="fas fa-dollar-sign"></i>
+                        <input type="number" id="prop-price" placeholder="Precio (MXN, sin comas)" required>
+                    </div>
+                    
+                    <h3 class="form-section-title">Características</h3>
+                    <div class="property-specs-inputs">
+                        <div class="input-group">
+                            <i class="fas fa-bed"></i>
+                            <input type="number" id="prop-bedrooms" placeholder="Dormitorios" min="1" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-bath"></i>
+                            <input type="number" id="prop-bathrooms" placeholder="Baños" min="1" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-vector-square"></i>
+                            <input type="number" id="prop-area" placeholder="Área (m²)" min="1" required>
+                        </div>
+                    </div>
+
+                    <h3 class="form-section-title">Disponibilidad Semanal</h3>
+                    <div id="supplier-disponibility-inputs" class="property-specs-inputs" style="grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div class="input-group">
+                            <i class="fas fa-calendar-day"></i>
+                            <fieldset id="prop-available-days-fieldset" required>
+                                <label><input type="checkbox" name="prop_day" value="lun"> Lunes</label>
+                                <label><input type="checkbox" name="prop_day" value="mar"> Martes</label>
+                                <label><input type="checkbox" name="prop_day" value="mie"> Miércoles</label>
+                                <label><input type="checkbox" name="prop_day" value="jue"> Jueves</label>
+                                <label><input type="checkbox" name="prop_day" value="vie"> Viernes</label>
+                                <label><input type="checkbox" name="prop_day" value="sab"> Sábado</label>
+                                <label><input type="checkbox" name="prop_day" value="dom"> Domingo</label>
+                            </fieldset>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-clock"></i>
+                            <select id="prop-start-time" required>
+                                </select>
+                            <select id="prop-end-time" required>
+                                </select>
+                        </div>
+                    </div>
+
+                    <h3 class="form-section-title">Descripción y Extras</h3>
+                    <textarea id="prop-description" rows="4" placeholder="Descripción detallada de la propiedad y sus características principales."></textarea>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-list-ul"></i>
+                        <input type="text" id="prop-features" placeholder="Características extra (separa con comas: Jardín, Alberca, Vista al mar)">
+                    </div>
+                    
+                    <h3 class="form-section-title">Foto Principal</h3>
+                    <div id="prop-image-preview-container" style="text-align: center; margin-bottom: 15px;">
+                        <img id="prop-image-preview" src="" alt="Previsualización de Imagen" style="max-width: 100%; max-height: 150px; display: none; border-radius: 8px;">
+                    </div>
+                    <input type="file" id="prop-image-input" accept="image/*">
+                    
+                    <button type="submit" class="contact-submit" id="submit-property">
+                        <i class="fas fa-plus-circle"></i> Publicar Propiedad
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="assistant-chat-overlay" id="assistant-chat">
+        <div class="assistant-chat">
+            <div class="chat-header">
+                <div class="chat-agent">
+                    <div class="agent-avatar">
+                       <div class="mascot-avatar">
+                            <div class="mascot-body">
+                                <div class="mascot-face">
+                                    <div class="mascot-eye left"></div>
+                                    <div class="mascot-eye right"></div>
+                                    <div class="mascot-mouth"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-info">
+                        <h3>Boli</h3>
+                        <p>Asistente Virtual</p>
+                    </div>
+                </div>
+                <button class="chat-close-btn" id="chat-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                </div>
+            <div class="chat-input-container">
+                <div class="chat-input">
+                    <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+                    <button class="voice-btn" id="voice-btn"><i class="fas fa-microphone"></i></button>
+                    <button class="send-btn" id="send-message"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-container">
+            <header class="modal-header">
+                <button class="modal-close-btn" id="close-contact-modal"><i class="fas fa-arrow-left"></i></button>
+                <h2 class="modal-title">Contactar Vendedor</h2>
+                <div></div>
+            </header>
+            <div class="modal-content">
+                <form id="contact-form">
+                    <div class="contact-property-info">
+                        <h3>Estás interesado en:</h3>
+                        <p id="contact-property-title">Título de la Propiedad</p>
+                        <p id="property-disponibility-info" style="font-size: 0.9rem; color: #666; margin-top: 5px;">Disponibilidad: N/A</p>
+                    </div>
+                    
+                    <h3 class="form-section-title">Elige un Horario</h3>
+                     <div class="input-group">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="date" id="preferred-date" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-clock"></i>
+                        <select id="preferred-time-select" required>
+                            </select>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="contact-name" placeholder="Tu Nombre completo" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="contact-email" placeholder="Tu Correo electrónico" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="contact-phone" placeholder="Tu Teléfono de contacto" required>
+                    </div>
+
+                    <textarea id="contact-message" rows="4" placeholder="Hola, me interesa esta propiedad y quisiera más información."></textarea>
+                    
+                    <button type="submit" class="contact-submit">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <script src="js/datos-y-estado.js" defer></script>
     <script src="js/interfaz-usuario.js" defer></script>

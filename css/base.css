@@ -5,61 +5,33 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
+
 html, body {
     width: 100%;
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    /* Se elimina el fondo gradiente y las propiedades para centrar el simulador */
+    background: #f8f9fa; /* Color de fondo base para la app */
+    overflow: hidden; /* Previene el scroll en el body */
 }
 
-/* ===== SIMULADOR DE DISPOSITIVO MÓVIL ===== */
-.mobile-simulator {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-.phone-frame {
-    width: 375px;
-    height: 812px;
-    background: #f8f9fa;
-    border-radius: 40px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    position: relative;
-    overflow: hidden;
-    border: 12px solid #1a1a1a;
-    transition: background-color 0.3s;
-}
-.phone-notch {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 30px;
-    background: #1a1a1a;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    z-index: 101;
-}
+/* LOS ESTILOS PARA .mobile-simulator, .phone-frame y .phone-notch SE HAN ELIMINADO 
+  PORQUE YA NO EXISTEN EN EL HTML.
+*/
 
 /* ===== CONTENIDO PRINCIPAL ===== */
+/* Ajuste para que el contenedor principal ocupe el espacio correcto y permita el scroll interno */
 .main-content {
-    flex: 1;
-    overflow-y: auto;
+    height: 100%; /* Ocupa toda la altura del body */
+    overflow-y: auto; /* Permite el scroll solo en esta área */
     padding: 16px;
-    padding-bottom: 80px;
-    height: calc(100% - 90px);
-    display: none;
+    padding-bottom: 80px; /* Espacio para la barra de navegación inferior */
+    display: none; /* Se mantiene oculto hasta el login */
+    position: relative; /* Necesario para elementos posicionados dentro */
 }
 
-/* ===== ANIMACIONES ===== */
+
+/* ===== ANIMACIONES (sin cambios) ===== */
 @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -72,11 +44,21 @@ html, body {
 .fa-spin { animation: fa-spin 1s infinite linear; }
 .user-menu.closing, .modal-overlay.closing .modal-container, #edit-profile-modal.closing .modal-container { animation: slideOutToRight 0.3s ease-in; }
 
-/* ===== NOTIFICACIONES Y OTROS ===== */
+/* ===== NOTIFICACIONES Y OTROS (con ajuste de posicionamiento) ===== */
 .notification-toast {
-    position: fixed; top: 100px; left: 50%; transform: translateX(-50%); background: #1a3c34;
-    color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.9rem; font-weight: 500;
-    z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); animation: slideDown 0.3s ease-out;
+    position: fixed; 
+    top: 20px; /* Más cerca de la parte superior */
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #1a3c34;
+    color: white; 
+    padding: 12px 24px; 
+    border-radius: 25px; 
+    font-size: 0.9rem; 
+    font-weight: 500;
+    z-index: 10000; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+    animation: slideDown 0.3s ease-out;
 }
 .notification-toast.error { background: #e74c3c; }
 .notification-toast.success { background: #27ae60; }
