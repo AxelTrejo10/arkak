@@ -248,6 +248,7 @@ async function handleRegistration() {
     // Usamos window.supabase para asegurarnos de que la variable esté en el alcance global
     const supabaseClient = window.supabase; 
     
+    // Verificación de conexión: Si esto falla, el problema es la clave o la URL en el servidor.
     if (!supabaseClient || !supabaseClient.auth) {
         console.error('ERROR: El módulo supabase.auth no está cargado. Esto es una falla de conexión/inicialización.');
         showNotification('Error de conexión con el servidor de autenticación.', 'error');
@@ -512,7 +513,7 @@ function updateAppliedFilters() {
     if (currentFilters.minPrice) activeFilters.push(`Precio min: $${currentFilters.minPrice.toLocaleString()}`);
     if (currentFilters.maxPrice) activeFilters.push(`Precio max: $${currentFilters.maxPrice.toLocaleString()}`);
     if (currentFilters.minBedrooms) activeFilters.push(`${currentFilters.minBedrooms}+ hab.`);
-    if (currentFilters.minBathrooms) activeFilters.push(`${currentFilters.minBathrooms}+ baños`);
+    if (currentFilters.minBathrooms) activeFilters.push(`${currentFilters.minBathoms}+ baños`);
     if (currentFilters.sortBy) {
         const sortTexts = { 'price-asc': 'Precio menor', 'price-desc': 'Precio mayor', 'bedrooms': 'Más habitaciones', 'area': 'Mayor superficie' };
         activeFilters.push(`Orden: ${sortTexts[currentFilters.sortBy]}`);
