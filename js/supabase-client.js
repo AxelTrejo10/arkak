@@ -1,5 +1,5 @@
 // ==================================================================
-// js/supabase-client.js: CONEXIÓN A SUPABASE
+// js/supabase-client.js: CONEXIÓN A SUPABASE (CORREGIDO)
 // ==================================================================
 
 // CLAVES PROPORCIONADAS POR EL USUARIO
@@ -9,7 +9,10 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 /**
  * Inicializa el cliente de Supabase usando el SDK global.
  */
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-window.supabase = supabase;
+// Utilizamos la función 'supabase.createClient' del SDK cargado por el CDN
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Hacemos que el cliente inicializado esté disponible globalmente
+window.supabase = supabaseClient; 
 
 console.log('Cliente de Supabase inicializado y disponible.');
