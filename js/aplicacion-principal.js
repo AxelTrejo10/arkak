@@ -248,7 +248,6 @@ async function handleRegistration() {
     // Usamos window.supabase para asegurarnos de que la variable esté en el alcance global
     const supabaseClient = window.supabase; 
     
-    // Verificación de conexión: Si esto falla, el problema es la clave o la URL en el servidor.
     if (!supabaseClient || !supabaseClient.auth) {
         console.error('ERROR: El módulo supabase.auth no está cargado. Esto es una falla de conexión/inicialización.');
         showNotification('Error de conexión con el servidor de autenticación.', 'error');
