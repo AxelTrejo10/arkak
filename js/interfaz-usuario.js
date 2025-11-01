@@ -21,23 +21,11 @@ function closeUserMenu() {
 
 function openEditProfileModal() {
     if (!currentUser) return;
-    // Usar userPreferences.name para el asistente (puede ser distinto a currentUser.name si fue ajustado por Boli)
-    // El menú de usuario muestra userPreferences.name || currentUser.name (ver updateUserMenu)
-    DOMElements.profileNameInput.value = userPreferences.name || currentUser.name; 
+    DOMElements.profileNameInput.value = userPreferences.name || currentUser.name;
     DOMElements.profileEmailInput.value = currentUser.email;
     DOMElements.profilePicPreview.src = userPreferences.profilePic || '';
-    
-    // Asegurarse de que el avatar por defecto se muestre si no hay imagen
-    if (!userPreferences.profilePic) {
-        document.getElementById('profile-pic-preview').style.display = 'none';
-    } else {
-        document.getElementById('profile-pic-preview').style.display = 'block';
-    }
-    
     DOMElements.themeToggle.checked = userPreferences.theme === 'dark';
-    
-    // Abrir el modal
-    DOMElements.editProfileModal.style.display = 'flex'; // Usar flex para centrar
+    DOMElements.editProfileModal.style.display = 'block';
     DOMElements.editProfileModal.classList.remove('closing');
     closeUserMenu();
 }
@@ -55,11 +43,7 @@ function openContactModal(propertyId) {
     if (!property) return;
 
     document.getElementById('contact-property-title').textContent = property.title;
-    
-    // MOSTRAR DISPONIBILIDAD DEL PROVEEDOR EN EL MODAL DE CONTACTO
-    const disponibilidadInfo = formatDisponibilidad(property.availableDays, property.availableHours);
-    document.getElementById('property-disponibility-info').textContent = `Disponibilidad: ${disponibilidadInfo}`;
-    
+    document.getElementById('property-disponibility-info').textContent = `Disponibilidad: ${property.disponibilidad || 'No especificada'}`;
     DOMElements.contactModal.dataset.propertyId = propertyId;
     
     if (currentUser) {
@@ -72,6 +56,7 @@ function openContactModal(propertyId) {
     DOMElements.contactModal.classList.remove('closing');
 }
 
+
 function closeContactModal() {
     DOMElements.contactModal.classList.add('closing');
     setTimeout(() => {
@@ -80,27 +65,6 @@ function closeContactModal() {
     }, 300);
 }
 
-// FUNCIÓN PARA FORMATEAR LA DISPONIBILIDAD EN TEXTO LEGIBLE
-function formatDisponibilidad(days, hours) {
-    if (!days || !hours || days === 'N/A' || hours === 'N/A') {
-        return 'No especificada';
-    }
-    
-    const dayNames = {
-        'lun': 'Lunes',
-        'mar': 'Martes', 
-        'mie': 'Miércoles',
-        'jue': 'Jueves',
-        'vie': 'Viernes',
-        'sab': 'Sábado',
-        'dom': 'Domingo'
-    };
-    
-    const daysArray = days.split(',');
-    const formattedDays = daysArray.map(day => dayNames[day] || day).join(', ');
-    
-    return `${formattedDays} de ${hours}`;
-}
 
 function applyTheme(theme) {
     DOMElements.phoneFrame.classList.toggle('dark-mode', theme === 'dark');
@@ -108,30 +72,24 @@ function applyTheme(theme) {
 }
 
 function updateAvatarDisplay(imageUrl) {
-    const defaultIcon = DOMElements.menuAvatarContainer.querySelector('.default-avatar-icon');
-    
     if (imageUrl) {
         DOMElements.menuAvatarImg.src = imageUrl;
         DOMElements.profilePicPreview.src = imageUrl;
         DOMElements.menuAvatarImg.style.display = 'block';
-        DOMElements.profilePicPreview.style.display = 'block';
-        if (defaultIcon) defaultIcon.style.display = 'none';
+        DOMElements.menuAvatarContainer.querySelector('.default-avatar-icon').style.display = 'none';
     } else {
         DOMElements.menuAvatarImg.src = '';
         DOMElements.profilePicPreview.src = '';
         DOMElements.menuAvatarImg.style.display = 'none';
-        DOMElements.profilePicPreview.style.display = 'none';
-        if (defaultIcon) defaultIcon.style.display = 'flex';
+        DOMElements.menuAvatarContainer.querySelector('.default-avatar-icon').style.display = 'flex';
     }
 }
 
 function updateUserMenu() {
     if (currentUser) {
-        // Muestra el nombre de las preferencias (ajustado por Boli) o el nombre por defecto del login
-        DOMElements.userName.textContent = userPreferences.name || currentUser.name; 
+        DOMElements.userName.textContent = userPreferences.name || currentUser.name;
         DOMElements.userEmail.textContent = currentUser.email;
         updateFavoritesCount();
-        updateAvatarDisplay(userPreferences.profilePic);
     }
 }
 
@@ -191,8 +149,8 @@ function renderProperties() {
     
     if (filtered.length === 0) {
         if (!isFavoritesViewActive) {
-            DOMElements.propertiesGrid.innerHTML = `<div class="no-results"><i class="fas fa-home"></i><h3>No hay propiedades disponibles</h3><p>Los proveedores aún no han publicado casas.</p></div>`;
-            DOMElements.propertiesTitle.textContent = 'No hay propiedades';
+            DOMElements.propertiesGrid.innerHTML = `<div class="no-results"><i class="fas fa-home"></i><h3>No se encontraron casas</h3><p>Intenta ajustar tus filtros.</p></div>`;
+            DOMElements.propertiesTitle.textContent = 'No hay resultados';
         }
     } else {
         filtered.forEach(p => DOMElements.propertiesGrid.appendChild(createPropertyCard(p)));
@@ -201,11 +159,12 @@ function renderProperties() {
         } else if (hasActiveFilters) {
             DOMElements.propertiesTitle.textContent = `${filtered.length} casa${filtered.length > 1 ? 's' : ''} encontrada${filtered.length > 1 ? 's' : ''}`;
         } else {
-            DOMElements.propertiesTitle.textContent = 'Casas Disponibles';
+            DOMElements.propertiesTitle.textContent = 'Casas Destacadas';
         }
     }
     setupPropertyEventListeners();
 }
+
 
 function createPropertyCard(property) {
     const card = document.createElement('div');
@@ -228,7 +187,10 @@ function createPropertyCard(property) {
                 <span><i class="fas fa-vector-square"></i> ${property.area}m²</span>
             </div>
             <p class="property-address"><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
-            <button class="action-btn">Ver Detalles</button>
+            
+            ${ (property.availableDays && property.availableHours) 
+                ? `<p class="property-availability"><strong>Disponibilidad:</strong> ${property.availableDays.split(',').map(d => ({lun:'Lunes',mar:'Martes',mie:'Miércoles',jue:'Jueves',vie:'Viernes',sab:'Sábado',dom:'Domingo'}[d.trim()] || '')).filter(Boolean).join(', ')} de ${property.availableHours}</p>`
+                : `<p class="property-availability"><strong>Disponibilidad:</strong> No especificada</p>` }<button class="action-btn">Ver Detalles</button>
         </div>`;
     return card;
 }
@@ -236,9 +198,6 @@ function createPropertyCard(property) {
 function showPropertyDetails(id) {
     const p = properties[id];
     if (!p) return;
-    
-    // FORMATEAR DISPONIBILIDAD PARA MOSTRARLA EN DETALLES
-    const disponibilidadFormateada = formatDisponibilidad(p.availableDays, p.availableHours);
     
     const providerInfo = `
         <p style="margin-top: 15px; color: #333; font-weight: 600;">
@@ -257,22 +216,8 @@ function showPropertyDetails(id) {
                 <div class="detail-feature"><i class="fas fa-vector-square"></i> ${p.area} m²</div>
             </div>
             <div class="detail-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div>
-            
-            <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #60B360;">
-                <h3 style="margin-bottom: 10px; color: #333; font-size: 1.1rem;">
-                    <i class="fas fa-calendar-alt" style="color: #60B360; margin-right: 8px;"></i>
-                    Horario Disponible para Visitas
-                </h3>
-                <p style="color: #555; margin-bottom: 8px; font-weight: 500;">
-                    <i class="fas fa-clock" style="color: #60B360; margin-right: 8px;"></i>
-                    ${disponibilidadFormateada}
-                </p>
-                <p style="color: #666; font-size: 0.9rem;">
-                    Contacta al proveedor para agendar una cita dentro de este horario.
-                </p>
-            </div>
-            
             <p class="detail-description">${p.description}</p>
+            <p style="margin-top: 15px; font-weight: 500; color: #60B360;">Disponibilidad: ${p.disponibilidad || 'No especificada'}</p>
             ${p.emailProveedor ? providerInfo : ''} 
             <h3>Características</h3>
             <div class="highlights-grid">${p.features.map(f => `<div class="highlight-item"><i class="fas fa-check"></i> ${f}</div>`).join('')}</div>
@@ -298,6 +243,7 @@ function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification-toast ${type}`;
     notification.textContent = message;
+    // <<<< CORRECCIÓN AQUÍ: Se adjunta al body, que es el contenedor principal ahora.
     document.body.appendChild(notification);
     setTimeout(() => notification.remove(), 3000);
 }
@@ -307,4 +253,3 @@ window.showUserMenu = showUserMenu;
 window.toggleFavorite = toggleFavorite;
 window.openContactModal = openContactModal;
 window.setupEditForm = setupEditForm;
-window.openEditProfileModal = openEditProfileModal; // HACER FUNCIÓN PÚBLICA

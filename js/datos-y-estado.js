@@ -3,11 +3,9 @@
 // ==================================================================
 let voices = [];
 
-// ELIMINADAS TODAS LAS CASAS PREEXISTENTES - SOLO SE MOSTRARÁN LAS PUBLICADAS POR PROVEEDORES
 const properties = {};
 
-// ESTRUCTURA DE USUARIO AMPLIADA PARA SUPABASE
-let currentUser = { id: null, email: null, name: null, phone: null, role: null };
+let currentUser = null;
 let favorites = new Set();
 let currentFilters = { searchTerm: '', minPrice: null, maxPrice: null, minBedrooms: null, minBathrooms: null, sortBy: null };
 let isFavoritesViewActive = false;

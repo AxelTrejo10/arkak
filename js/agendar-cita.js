@@ -1,114 +1,132 @@
 // ==================================================================
-// FUNCIONALIDAD DE AGENDAR CITA
+// ArkaK - Agendamiento de citas (usar properties[].availableDays / availableHours)
 // ==================================================================
+(function(){
+    const dayNames = ["dom","lun","mar","mie","jue","vie","sab"];
+    let selectedProperty = null;
 
-function openAppointmentModal(propertyId) {
-    const property = properties[propertyId];
-    if (!property) return;
+    function openAppointmentModal(propertyId){
+        selectedProperty = properties[propertyId];
+        if(!selectedProperty){ return; }
 
-    // Configurar título con nombre de la propiedad
-    document.getElementById('appointment-title').textContent = `Agendar cita - ${property.title}`;
-    
-    // Configurar fecha mínima como hoy
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('appointment-date').min = today;
-    
-    // Generar opciones de hora basadas en la disponibilidad del proveedor
-    const timeSelect = document.getElementById('appointment-time');
-    timeSelect.innerHTML = '<option value="">Selecciona una hora</option>';
-    
-    if (property.availableHours && property.availableHours !== 'N/A') {
-        const [startTime, endTime] = property.availableHours.split(' - ');
-        
-        if (startTime && endTime) {
-            // Generar slots de 30 minutos dentro del rango disponible
-            const slots = generateTimeSlots(startTime, endTime);
-            slots.forEach(slot => {
-                const option = document.createElement('option');
-                option.value = slot.value;
-                option.textContent = slot.display;
-                timeSelect.appendChild(option);
-            });
+        const modal = document.getElementById("appointment-modal");
+        const title = document.getElementById("appointment-title");
+        const feedback = document.getElementById("appointment-feedback");
+        const dateInput = document.getElementById("appointment-date");
+        const timeInput = document.getElementById("appointment-time");
+
+        title.textContent = `Agendar cita con ${selectedProperty.title || "proveedor"}`;
+        feedback.textContent = "";
+        feedback.style.color = "#dc3545";
+        dateInput.value = "";
+        timeInput.innerHTML = "";
+
+        setupDateRange(dateInput);
+        setupTimeOptions(timeInput, selectedProperty.availableHours);
+
+        modal.style.display = "flex";
+    }
+
+    function closeAppointmentModal(){
+        const modal = document.getElementById("appointment-modal");
+        modal.style.display = "none";
+    }
+
+    function setupDateRange(input){
+        const today = new Date(); today.setHours(0,0,0,0);
+        const end = new Date(); end.setDate(today.getDate()+30);
+        input.min = today.toISOString().split("T")[0];
+        input.max = end.toISOString().split("T")[0];
+        input.onchange = validateDateAgainstAvailability;
+    }
+
+    function setupTimeOptions(select, hoursRange){
+        select.innerHTML = "";
+        if(!hoursRange){ return; }
+        const [start, end] = hoursRange.split("-");
+        const s = parseInt(start.split(":")[0],10);
+        const e = parseInt(end.split(":")[0],10);
+        for(let h=s; h<=e; h++){
+            const v = String(h).padStart(2,"0")+":00";
+            const opt = document.createElement("option");
+            opt.value = v; opt.textContent = v;
+            select.appendChild(opt);
         }
     }
-    
-    // Mostrar modal
-    document.getElementById('appointment-modal').style.display = 'flex';
-}
 
-function generateTimeSlots(startTime, endTime) {
-    const slots = [];
-    
-    // Convertir tiempos a minutos desde medianoche
-    const startMinutes = timeToMinutes(startTime);
-    const endMinutes = timeToMinutes(endTime);
-    
-    // Generar slots cada 30 minutos
-    for (let minutes = startMinutes; minutes < endMinutes; minutes += 30) {
-        const time24 = minutesToTime(minutes);
-        const displayTime = formatTimeDisplay(time24);
-        slots.push({ value: time24, display: displayTime });
+    function validateDateAgainstAvailability(){
+        const feedback = document.getElementById("appointment-feedback");
+        const dateInput = document.getElementById("appointment-date");
+        if(!selectedProperty || !dateInput.value){ return; }
+        const d = new Date(dateInput.value+"T00:00:00");
+        const weekday = dayNames[d.getDay()];
+        const allowed = (selectedProperty.availableDays || "").split(",");
+        if(allowed.indexOf(weekday) === -1){
+            feedback.textContent = "El proveedor no atiende el día seleccionado.";
+        }else{
+            feedback.textContent = "";
+        }
     }
-    
-    return slots;
-}
 
-function timeToMinutes(timeStr) {
-    const [hours, minutes] = timeStr.split(':').map(Number);
-    return hours * 60 + minutes;
-}
+    function onSubmit(e){
+        e.preventDefault();
+        const feedback = document.getElementById("appointment-feedback");
+        const dateInput = document.getElementById("appointment-date");
+        const timeInput = document.getElementById("appointment-time");
 
-function minutesToTime(totalMinutes) {
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-}
+        if(!selectedProperty){ feedback.textContent="Proveedor no válido."; return; }
+        if(!dateInput.value || !timeInput.value){ feedback.textContent="Selecciona fecha y hora."; return; }
 
-function formatTimeDisplay(time24) {
-    const [hours, minutes] = time24.split(':').map(Number);
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    const displayHours = hours % 12 || 12;
-    return `${displayHours}:${String(minutes).padStart(2, '0')} ${ampm}`;
-}
+        const d = new Date(dateInput.value+"T00:00:00");
+        const weekday = dayNames[d.getDay()];
+        const allowedDays = (selectedProperty.availableDays || "").split(",");
+        if(allowedDays.indexOf(weekday) === -1){
+            feedback.textContent = "El proveedor no atiende ese día.";
+            return;
+        }
 
-function closeAppointmentModal() {
-    document.getElementById('appointment-modal').style.display = 'none';
-    document.getElementById('appointment-form').reset();
-    document.getElementById('appointment-feedback').textContent = '';
-}
+        const [start, end] = (selectedProperty.availableHours || "").split("-");
+        if(timeInput.value < start || timeInput.value > end){
+            feedback.textContent = "El proveedor no atiende en ese horario.";
+            return;
+        }
 
-// Manejar envío del formulario de cita
-document.getElementById('appointment-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const selectedDate = document.getElementById('appointment-date').value;
-    const selectedTime = document.getElementById('appointment-time').value;
-    
-    if (!selectedDate || !selectedTime) {
-        document.getElementById('appointment-feedback').textContent = 'Por favor selecciona fecha y hora.';
-        document.getElementById('appointment-feedback').style.color = 'red';
-        return;
+        feedback.style.color = "#198754";
+        feedback.textContent = "✅ Cita agendada con éxito. Recibirás confirmación por correo.";
+        setTimeout(closeAppointmentModal, 1800);
     }
-    
-    // Simular envío exitoso
-    document.getElementById('appointment-feedback').textContent = '¡Cita agendada exitosamente! Te hemos enviado un correo de confirmación.';
-    document.getElementById('appointment-feedback').style.color = 'green';
-    
-    // Cerrar modal después de 2 segundos
-    setTimeout(() => {
-        closeAppointmentModal();
-    }, 2000);
-});
 
-// Cerrar modal al hacer clic en el botón de cerrar
-document.getElementById('close-appointment').addEventListener('click', closeAppointmentModal);
+    // Wire up close button and form
+    document.addEventListener("DOMContentLoaded", function(){
+        const closeBtn = document.getElementById("close-appointment");
+        const form = document.getElementById("appointment-form");
+        if(closeBtn){ closeBtn.addEventListener("click", closeAppointmentModal); }
+        if(form){ form.addEventListener("submit", onSubmit); }
 
-// Cerrar modal al hacer clic fuera del contenido
-document.getElementById('appointment-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeAppointmentModal();
-    }
-});
+        // Enhance existing property cards by injecting "Agendar cita" button
+        try{
+            if(window.DOMElements && DOMElements.propertiesGrid){
+                const grid = DOMElements.propertiesGrid;
+                // Monkey-patch createPropertyCard to add button, if exists
+                if(typeof window.createPropertyCard === "function"){
+                    const original = window.createPropertyCard;
+                    window.createPropertyCard = function(property){
+                        const card = original(property);
+                        try{
+                            const btn = document.createElement("button");
+                            btn.className = "action-button primary";
+                            btn.innerHTML = '<i class="far fa-calendar-alt"></i> Agendar cita';
+                            btn.addEventListener("click", function(){ openAppointmentModal(property.id); });
+                            const actions = card.querySelector(".card-actions, .action-buttons, .property-info");
+                            (actions || card).appendChild(btn);
+                        }catch(err){ /* ignore */ }
+                        return card;
+                    };
+                }
+            }
+        }catch(e){ /* ignore */ }
+    });
 
-// Hacer función global para abrir modal desde otros archivos
-window.openAppointmentModal = openAppointmentModal;
+    // Expose opener
+    window.openAppointmentModal = openAppointmentModal;
+})();

@@ -104,14 +104,10 @@
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
     cursor: pointer; animation: slideUp 0.3s ease-out;
 }
-.property-card:hover 
-{ transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-.card-header 
-{ position: relative; padding: 12px; display: flex; justify-content: space-between; align-items: flex-start; }
-.property-badge 
-{ padding: 6px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; color: white; }
-.property-badge.destacado 
-{ background: linear-gradient(135deg, #80D480, #60B360); }
+.property-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+.card-header { position: relative; padding: 12px; display: flex; justify-content: space-between; align-items: flex-start; }
+.property-badge { padding: 6px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; color: white; }
+.property-badge.destacado { background: linear-gradient(135deg, #80D480, #60B360); }
 .property-badge.nuevo { background: linear-gradient(135deg, #667eea, #764ba2); }
 .property-badge.oferta { background: linear-gradient(135deg, #f093fb, #f5576c); }
 .favorite-btn {
