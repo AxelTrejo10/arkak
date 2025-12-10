@@ -63,13 +63,13 @@ function speakText(text) {
 
     // --- LÓGICA DE SELECCIÓN DE VOZ MASCULINA ---
     const vocesPreferidas = [
-        "Juan",         // Voz de alta calidad en macOS/iOS (México)
-        "Microsoft Raul - Spanish (Mexico)", // Voz de alta calidad en Windows 10/11
-        "Diego",        // Voz común en macOS/iOS (Argentina)
-        "Jorge",        // Voz de alta calidad en macOS/iOS (España)
-        "Google español de Estados Unidos", // A menudo es una voz masculina en Android/Chrome
-        "Google español", // A menudo es una voz masculina en Android/Chrome
-        "Microsoft David - Spanish (Spain)" // Voz masculina común en Windows (España)
+        "Juan",         
+        "Microsoft Raul - Spanish (Mexico)", 
+        "Diego",        
+        "Jorge",        
+        "Google español de Estados Unidos", 
+        "Google español", 
+        "Microsoft David - Spanish (Spain)" 
     ];
 
     let vozEncontrada = null;
@@ -89,8 +89,13 @@ function speakText(text) {
 function processAssistantQuery(msg) {
     const m = msg.toLowerCase().trim();
     const name = userPreferences.name ? `, ${userPreferences.name}` : '';
-
-    if (m.match(/explícame|de qué va|qué es esta app|para qué sirve/)) {
+    
+    // Simplificamos la detección para capturar "de que trata" y "que es"
+    if (m.includes('que trata la aplicacion') || 
+        m.includes('que es esta app') ||
+        m.includes('para que sirve') || 
+        m.includes('explicame')) 
+    {
         return "Nuestra aplicación ArcaK se encarga de encontrar tu casa ideal al presupuesto que mejor se acomode a ti. También estoy yo, Boli, que te ayudaré a navegar en nuestra aplicación.";
     }
 
@@ -119,7 +124,7 @@ function processAssistantQuery(msg) {
     let filters = {};
     let responseParts = [];
 
-    // ===== LÓGICA DE PRESUPUESTO =====
+    // ===== LÓGICA DE PRESUPUESTO (EXISTENTE) =====
     let budgetFound = false;
     if (m.includes('medio millon') || m.includes('medio millón')) {
         filters.maxPrice = 500000;
@@ -141,7 +146,7 @@ function processAssistantQuery(msg) {
         }
     }
 
-    // ===== NUEVA LÓGICA DE UBICACIÓN =====
+    // ===== LÓGICA DE UBICACIÓN (EXISTENTE) =====
     if (m.includes('zihuatanejo') || m.includes('ixtapa')) {
         filters.searchTerm = 'zihuatanejo';
         responseParts.push('en Zihuatanejo');
@@ -156,7 +161,7 @@ function processAssistantQuery(msg) {
         responseParts.push('en Barrio Viejo');
     }
 
-    // ===== LÓGICA DE CARACTERÍSTICAS =====
+    // ===== LÓGICA DE CARACTERÍSTICAS (EXISTENTE) =====
     if (m.match(/caras|lujo|costosas|de lujo|más altas/)) {
         filters.sortBy = 'price-desc';
         responseParts.push('las más lujosas');

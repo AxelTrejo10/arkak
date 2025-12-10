@@ -291,13 +291,13 @@
 <div class="input-group">
 <i class="fas fa-calendar-day"></i>
 <fieldset id="prop-available-days-fieldset" required="">
-<label><input name="prop_day" type="checkbox" value="lun"/> Lunes</label>
-<label><input name="prop_day" type="checkbox" value="mar"/> Martes</label>
-<label><input name="prop_day" type="checkbox" value="mie"/> Miércoles</label>
-<label><input name="prop_day" type="checkbox" value="jue"/> Jueves</label>
-<label><input name="prop_day" type="checkbox" value="vie"/> Viernes</label>
-<label><input name="prop_day" type="checkbox" value="sab"/> Sábado</label>
-<label><input name="prop_day" type="checkbox" value="dom"/> Domingo</label>
+    <label><span>Lunes</span><input name="prop_day" type="checkbox" value="lun"/></label>
+    <label><span>Martes</span><input name="prop_day" type="checkbox" value="mar"/></label>
+    <label><span>Miércoles</span><input name="prop_day" type="checkbox" value="mie"/></label>
+    <label><span>Jueves</span><input name="prop_day" type="checkbox" value="jue"/></label>
+    <label><span>Viernes</span><input name="prop_day" type="checkbox" value="vie"/></label>
+    <label><span>Sábado</span><input name="prop_day" type="checkbox" value="sab"/></label>
+    <label><span>Domingo</span><input name="prop_day" type="checkbox" value="dom"/></label>
 </fieldset>
 </div>
 <div class="input-group">
@@ -407,9 +407,5 @@
 <script defer="" src="js/interfaz-usuario.js"></script>
 <script defer="" src="js/asistente-boli.js"></script>
 <script defer="" src="js/aplicacion-principal.js"></script>
-<div class="appointment-modal" id="appointment-modal">
-    <div class="appointment-container"><h2 id="appointment-title">Agendar cita</h2>
-        <form id="appointment-form"><label for="appointment-date">Fecha disponible:</label><input id="appointment-date" required="True" type="date"/><label for="appointment-time">Hora disponible:</label><select id="appointment-time" required="True"></select><button class="btn-submit" type="submit">Confirmar cita</button><p id="appointment-feedback"></p></form><button class="btn-close" id="close-appointment">Cerrar</button></div></div><script src="js/arkak-agendar-cita.js"></script></body>
-<script src="js/detalle-propiedad.js"></script>
-
+<div class="appointment-modal" id="appointment-modal"><div class="appointment-container"><h2 id="appointment-title">Agendar cita</h2><form id="appointment-form"><label for="appointment-date">Fecha disponible:</label><input id="appointment-date" required="True" type="date"/><label for="appointment-time">Hora disponible:</label><select id="appointment-time" required="True"></select><button class="btn-submit" type="submit">Confirmar cita</button><p id="appointment-feedback"></p></form><button class="btn-close" id="close-appointment">Cerrar</button></div></div><script src="js/arkak-agendar-cita.js"></script></body>
 </html>

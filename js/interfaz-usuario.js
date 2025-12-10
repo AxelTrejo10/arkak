@@ -187,10 +187,7 @@ function createPropertyCard(property) {
                 <span><i class="fas fa-vector-square"></i> ${property.area}m²</span>
             </div>
             <p class="property-address"><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
-            
-            ${ (property.availableDays && property.availableHours) 
-                ? `<p class="property-availability"><strong>Disponibilidad:</strong> ${property.availableDays.split(',').map(d => ({lun:'Lunes',mar:'Martes',mie:'Miércoles',jue:'Jueves',vie:'Viernes',sab:'Sábado',dom:'Domingo'}[d.trim()] || '')).filter(Boolean).join(', ')} de ${property.availableHours}</p>`
-                : `<p class="property-availability"><strong>Disponibilidad:</strong> No especificada</p>` }<button class="action-btn">Ver Detalles</button>
+            <button class="action-btn">Ver Detalles</button>
         </div>`;
     return card;
 }

@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactModal: document.getElementById('contact-modal'),
         closeContactModalBtn: document.getElementById('close-contact-modal'),
         contactForm: document.getElementById('contact-form'),
-        // AÑADIDO: Referencias del modal de proveedor
+        // Referencias de Proveedor (simuladas)
         supplierMenuItem: document.getElementById('supplier-menu-item'),
         supplierModal: document.getElementById('supplier-modal'),
         closeSupplierModalBtn: document.getElementById('close-supplier-modal'),
@@ -87,10 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
         propImageInput: document.getElementById('prop-image-input'),
         propImagePreview: document.getElementById('prop-image-preview'),
         propAvailableDays: document.getElementById('prop-available-days-fieldset'),
-        propStartHour: document.getElementById('prop-start-time'), // NUEVO SELECTOR
-        propEndHour: document.getElementById('prop-end-time'),     // NUEVO SELECTOR
+        propStartHour: document.getElementById('prop-start-time'), 
+        propEndHour: document.getElementById('prop-end-time'),     
         preferredDate: document.getElementById('preferred-date'),
-        preferredTimeSelect: document.getElementById('preferred-time-select') // NUEVO SELECTOR
+        preferredTimeSelect: document.getElementById('preferred-time-select'),
+        
+        // ELEMENTOS DE ADMIN/REGISTRO YA NO SE USAN EN ESTA VERSIÓN
+        // adminMenuItem: document.getElementById('admin-menu-item'), // Se mantiene en HTML pero se ignora aquí.
+        // registerForm: document.getElementById('register-form'),
+        // showRegisterFormBtn: document.getElementById('show-register-form'),
+        // showLoginFormBtn: document.getElementById('show-login-form'),
     };
 
     // POBLAR SELECTORES DE HORA AL INICIO
@@ -145,7 +151,8 @@ function initializeApp() {
 }
 
 function setupEventListeners() {
-    DOMElements.loginForm.addEventListener('submit', handleLogin);
+    // LOGIN RESTAURADO A LA VERSIÓN SIMPLE (solo pide email)
+    DOMElements.loginForm.addEventListener('submit', handleLogin); 
     DOMElements.logoutBtn.addEventListener('click', handleLogout);
     DOMElements.searchInput.addEventListener('input', handleSearch);
     DOMElements.filterBtn.addEventListener('click', () => DOMElements.filtersModal.style.display = 'block');
@@ -173,6 +180,8 @@ function setupEventListeners() {
     if(DOMElements.supplierMenuItem) DOMElements.supplierMenuItem.addEventListener('click', openSupplierModal);
     if(DOMElements.closeSupplierModalBtn) DOMElements.closeSupplierModalBtn.addEventListener('click', closeSupplierModal);
     if(DOMElements.addPropertyForm) DOMElements.addPropertyForm.addEventListener('submit', handleAddProperty);
+    
+    // ADMINISTRACIÓN Y REGISTRO ELIMINADOS
     
     DOMElements.closeEditProfileBtn.addEventListener('click', closeEditProfileModal);
     DOMElements.editProfileForm.addEventListener('submit', handleProfileUpdate);
@@ -238,7 +247,7 @@ function showFavoritesView(e) {
 
 function showUserMenu(e) {
     if (e) e.preventDefault();
-    if (!currentUser) { DOMElements.loginOverlay.style.display = 'flex'; return; }
+    if (!currentUser || !currentUser.email) { DOMElements.loginOverlay.style.display = 'flex'; return; }
     updateUserMenu();
     DOMElements.userMenuOverlay.style.display = 'block';
     updateActiveTab('tab-profile');
@@ -250,9 +259,10 @@ function handleMenuItemClick(item) {
         case 'Editar Perfil': 
         openEditProfileModal();
         break;
-        case 'Proveedor': // CAMBIO: Llama a la función de proveedor
+        case 'Proveedor': 
             openSupplierModal();
             break;
+        // ADMINISTRACIÓN ELIMINADA
         case 'Mis Favoritos':
             showFavoritesView(); 
         break;
@@ -261,18 +271,30 @@ function handleMenuItemClick(item) {
     }
 }
 
+// LOGIN RESTAURADO A LA VERSIÓN SIMPLE (solo pide email/contraseña ficticia)
 function handleLogin(e) {
     e.preventDefault();
     const email = DOMElements.loginForm.querySelector('#login-email').value;
+    const password = DOMElements.loginForm.querySelector('#login-password').value; // Contraseña ficticia
     const phone = Math.floor(Math.random() * 9000000000) + 1000000000; // Simulación de teléfono
+    
+    // SIMULACIÓN DE VALIDACIÓN (Contraseña ficticia para cualquier email)
+    if (password.length < 4) {
+        showNotification('Contraseña demasiado corta.', 'error');
+        return;
+    }
+
     DOMElements.loginSubmitBtn.disabled = true;
+    
     setTimeout(() => {
         currentUser = { email: email, name: email.split('@')[0], phone: phone };
         userPreferences.name = currentUser.name;
+        
         if (DOMElements.loginForm.querySelector('#remember-me').checked) {
             localStorage.setItem('arcaK_user', JSON.stringify(currentUser));
         }
         localStorage.setItem('arcaK_preferences', JSON.stringify(userPreferences));
+        
         DOMElements.loginOverlay.style.display = 'none';
         DOMElements.mainContent.style.display = 'block';
         showNotification(`¡Bienvenido, ${currentUser.name}!`, 'success');
@@ -376,9 +398,6 @@ function handleContactFormSubmit(e) {
         PRECIO: ${formatCurrencyUI(property.price)}
         FECHA DE INTERÉS: ${new Date(date).toLocaleDateString()}
         HORARIO SOLICITADO: ${schedule}
-        
-        COTIZACIÓN: Precio final con impuestos y fees (Simulación).
-        MINUTA Y CONTRATO PRELIMINAR: Archivo adjunto (Simulación de documento legal).
         
         (Estos documentos se han enviado a ${email} para revisión.)
     `;
@@ -612,7 +631,6 @@ function setupEditForm(id) {
     document.getElementById('prop-features').value = p.features.join(', ');
     
     // Rellenar selectores de disponibilidad
-    // Días: Marcar las casillas de verificación
     const daysArray = p.availableDays ? p.availableDays.split(',') : [];
     Array.from(DOMElements.propAvailableDays.querySelectorAll('input[name="prop_day"]')).forEach(checkbox => {
         checkbox.checked = daysArray.includes(checkbox.value);
@@ -622,7 +640,6 @@ function setupEditForm(id) {
     const [startHour = '', endHour = ''] = p.availableHours ? p.availableHours.split('-').map(s => s.trim()) : ['', ''];
     DOMElements.propStartHour.value = startHour;
     DOMElements.propEndHour.value = endHour;
-
 
     // Mostrar imagen actual
     propertyImageBase64 = p.image;

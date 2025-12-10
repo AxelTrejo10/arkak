@@ -1,4 +1,4 @@
-/* ===== HEADER MÓVIL ===== */
+/* ===== HEADER MÓVIL (Sin cambios) ===== */
 .mobile-header {
     height: 60px;
     background: #60B360;
@@ -47,7 +47,7 @@
     color: white; 
 }
 
-/* ===== BÚSQUEDA Y FILTROS ===== */
+/* ===== BÚSQUEDA Y FILTROS (Sin cambios) ===== */
 .search-section { margin-bottom: 20px; }
 .search-container { display: flex; gap: 12px; align-items: center; }
 .search-bar {
@@ -93,7 +93,7 @@
     font-weight: 500; cursor: pointer; margin-left: auto;
 }
 
-/* ===== SECCIÓN DE PROPIEDADES ===== */
+/* ===== SECCIÓN DE PROPIEDADES (Sin cambios) ===== */
 .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .section-header h2 { font-size: 1.4rem; color: #333; font-weight: 700; transition: color 0.3s; }
 .see-all { color: #80D480; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
@@ -142,7 +142,7 @@
 }
 .action-btn:hover { background: #509750; transform: translateY(1px); }
 
-/* ===== BARRA DE NAVEGACIÓN INFERIOR ===== */
+/* ===== BARRA DE NAVEGACIÓN INFERIOR (Sin cambios) ===== */
 .bottom-tab-bar {
     position: fixed; /* <<<< CORRECCIÓN AQUÍ */
     bottom: 0; 
@@ -168,7 +168,7 @@
 .tab-label { font-size: 0.7rem; font-weight: 500; }
 .tab-item:hover { background: #f8f9fa; }
 
-/* ===== MASCOTA Y CHAT ===== */
+/* ===== MASCOTA Y CHAT (Sin cambios) ===== */
 .cute-mascot {
     position: fixed; /* <<<< CORRECCIÓN AQUÍ */
     bottom: 80px; 
@@ -211,7 +211,7 @@
 .mascot-avatar .mascot-eye { width: 6px; height: 6px; }
 .mascot-avatar .mascot-mouth { width: 15px; height: 6px; }
 
-/* ===== MODALES (GENERAL) */
+/* ===== MODALES (GENERAL) (Sin cambios) ===== */
 .modal-overlay, .filters-modal-overlay, .user-menu-overlay, .assistant-chat-overlay {
     position: fixed; /* <<<< CORRECCIÓN AQUÍ */
     top: 0;
@@ -249,7 +249,7 @@
 .modal-content { flex: 1; overflow-y: auto; padding-bottom: 100px; -webkit-overflow-scrolling: touch; max-height: calc(100% - 60px); }
 
 
-/* ===== MODAL DE DETALLES DE PROPIEDAD ===== */
+/* ===== MODAL DE DETALLES DE PROPIEDAD (Sin cambios) ===== */
 .property-gallery { position: relative; height: 250px; overflow: hidden; flex-shrink: 0; }
 .property-gallery img { width: 100%; height: 100%; object-fit: cover; }
 .gallery-indicator { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 500; }
@@ -294,7 +294,7 @@
 .action-button.secondary { background: white; color: #60B360; border: 2px solid #60B360; transition: all 0.3s;}
 .action-button:hover { transform: translateY(-1px); }
 
-/* ===== MODAL DE FILTROS ===== */
+/* ===== MODAL DE FILTROS (Sin cambios) ===== */
 .filters-modal {
     position: absolute; bottom: 0; left: 0; right: 0; background: white;
     border-radius: 24px 24px 0 0; max-height: 80%; overflow-y: auto; animation: slideUp 0.3s ease-out;
@@ -338,7 +338,7 @@
     color: white; font-size: 1rem; font-weight: 600; cursor: pointer;
 }
 
-/* ===== CHAT DEL ASISTENTE IA ===== */
+/* ===== CHAT DEL ASISTENTE IA (Sin cambios) ===== */
 .assistant-chat {
     position: absolute; bottom: 0; left: 0; right: 0; background: white;
     border-radius: 24px 24px 0 0; max-height: 70%; display: flex;
@@ -387,7 +387,7 @@
 }
 .voice-indicator i { color: #e74c3c; animation: pulse 1s infinite; }
 
-/* ===== MENÚ DE USUARIO (Diseño Mejorado) ===== */
+/* ===== MENÚ DE USUARIO (Diseño Mejorado) (Sin cambios) ===== */
 .user-menu {
     position: absolute; top: 0; right: 0; width: 280px; height: 100%; background: white;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column;
@@ -453,7 +453,7 @@
 .logout-btn i { color: #e74c3c; }
 .logout-btn:hover { background: #ffeaea; }
 
-/* ===== PANTALLA DE LOGIN ===== */
+/* ===== PANTALLA DE LOGIN (Sin cambios) ===== */
 .login-overlay {
     position: fixed; /* <<<< CORRECCIÓN AQUÍ */
     top: 0;
@@ -506,7 +506,7 @@
 .login-submit-btn:hover, .contact-submit:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(96, 179, 96, 0.3); }
 .btn-loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-/* ===== MODAL DE CONTACTO (REDiseñado) ===== */
+/* ===== MODAL DE CONTACTO (REDiseñado) (Sin cambios) ===== */
 #contact-modal .modal-content {
     padding: 24px;
 }
@@ -558,7 +558,7 @@
     margin-bottom: 0;
 }
 
-/* ===== MODAL EDICIÓN DE PERFIL (REDiseñado) ===== */
+/* ===== MODAL EDICIÓN DE PERFIL (REDiseñado) (Sin cambios) ===== */
 #edit-profile-modal .modal-content {
     padding: 24px;
 }
@@ -693,7 +693,7 @@ input:checked + .slider:before {
     color: #666;
 }
 
-/* ===== NUEVOS ESTILOS PARA MODAL PROVEEDOR ===== */
+/* ===== NUEVOS ESTILOS PARA MODAL PROVEEDOR (CORRECCIÓN DE DISEÑO Y ELIMINACIÓN DE ICONOS) ===== */
 .property-form {
     padding: 24px;
     display: flex;
@@ -714,17 +714,88 @@ input:checked + .slider:before {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
+
+/* 1. DISPONIBILIDAD SEMANAL (Contenedor de Días y Horas) */
 #supplier-disponibility-inputs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Días y Horas uno al lado del otro */
     gap: 10px;
 }
-.property-specs-inputs .input-group input {
-    padding: 10px 10px 10px 40px;
+
+/* 2. ESTILO DEL CAMPO DE DÍAS (FieldSet con Scroll y Checkboxes) */
+#prop-available-days-fieldset {
+    /* Estilo visual base */
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    font-size: 1rem;
+    /* --- CORRECCIÓN DE ALINEACIÓN --- */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    /* --- FIN CORRECCIÓN DE ALINEACIÓN --- */
+    height: 150px; /* Altura fija para scroll */
+    overflow-y: auto;
+    position: relative; 
 }
-#supplier-disponibility-inputs select {
-    width: 100%;
-    padding: 10px 10px 10px 40px; 
+
+/* --- ELIMINACIÓN DE ICONO CALENDARIO --- */
+#prop-available-days-fieldset::before {
+    content: none !important; /* Quitamos el icono del calendario */
+}
+
+/* Alineación de la etiqueta (Label) que contiene el texto y el checkbox */
+#prop-available-days-fieldset label {
+    display: block;
+    position: relative;
+    padding: 6px 44px 6px 6px; /* espacio a la derecha para el checkbox */
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    line-height: 1.3;
+}
+
+#prop-available-days-fieldset label span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#prop-available-days-fieldset label input[type="checkbox"] {
+    position: absolute;
+    right: 10px; /* misma distancia desde el borde para todos los labels */
+    top: 50%;
+    transform: translateY(-50%); /* centrar verticalmente dentro del label */
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+}
+
+
+/* 3. ESTILO DEL CAMPO DE HORAS (START/END TIME) */
+.input-group.time-range-group {
+    display: flex;
+    gap: 5px;
+    position: relative;
+    align-items: center;
+}
+
+/* --- ELIMINACIÓN TOTAL DEL ICONO RELOJ (Manecilla y Fondo) --- */
+.input-group.time-range-group::before {
+    content: none !important; /* Quitar el icono del reloj del input-group */
+    width: 0 !important; 
+    left: 0 !important;
+}
+/* Asegurarse de que no haya elementos de iconos de input-group afectando */
+.input-group.time-range-group ~ div.input-group i.fa-clock { 
+    display: none !important; 
+}
+
+
+.input-group.time-range-group select {
+    flex: 1; /* Ambos selectores ocupan el mismo espacio */
+    padding: 10px 10px 10px 10px; /* Restauramos el padding normal */
     border: 2px solid #e9ecef;
     border-radius: 12px;
     font-size: 1rem;
@@ -732,6 +803,19 @@ input:checked + .slider:before {
     outline: none;
     appearance: none; 
     cursor: pointer;
+    height: 44px; /* Asegura altura consistente */
+}
+.input-group.time-range-group select:first-child {
+    padding-left: 10px; /* Restauramos padding normal */
+}
+.input-group.time-range-group select:last-child {
+    padding-left: 10px; /* Restauramos padding normal */
+}
+/* === FIN DE CORRECCIÓN DE DISPONIBILIDAD === */
+
+
+.property-specs-inputs .input-group input {
+    padding: 10px 10px 10px 40px;
 }
 
 #supplier-disponibility-inputs #prop-available-days {
@@ -753,25 +837,6 @@ input:checked + .slider:before {
 #contact-form > div.input-group > select#preferred-time-select {
     padding-left: 40px;
 }
-
-#prop-available-days-fieldset {
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    padding: 8px 12px;
-    background: #f8f9fa;
-    font-size: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    height: 150px;
-    overflow-y: auto;
-}
-#prop-available-days-fieldset label {
-    font-weight: 500;
-    color: #333;
-    cursor: pointer;
-}
-
 
 .property-form textarea {
     width: 100%;
